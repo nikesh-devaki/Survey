@@ -1,0 +1,29 @@
+Roles
+Admin
+Surveyer
+Surveyee
+Guest
+
+Actions:
+-Surveyer
+ Survey
+ -- Create Survey
+ -- Edit Survey
+ -- Delete Survey
+ -- View Survey
+ -- View Survey Report
+ Question:
+   -Create Question
+   -Edit Question
+   -Delete Question
+ Choice:
+    -Add Choice
+    -Add answer  
+ 
+ -Surveyee
+  -- Get Survey
+  -- Answer Survey
+  -- Modify Survey
+  -- Create Account
+  
+  
