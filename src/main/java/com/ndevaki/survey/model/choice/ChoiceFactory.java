@@ -1,5 +1,7 @@
 package com.ndevaki.survey.model.choice;
 
+import java.util.ArrayList;
+
 public class ChoiceFactory {
 
 	public enum Type{
@@ -11,17 +13,17 @@ public class ChoiceFactory {
 		}
 	}
 	
-	public Choice getChoice(String choice) throws Exception {
+	public Choice getChoice(String choice,ArrayList<Option> options) throws Exception {
 		Choice c;
 		switch(choice) {
 			case "Single":
-				c= new SingleChoice();
+				c= new SingleChoice(options);
 				break;
 			case "Multi":
-				c=new MultiChoice();
+				c=new MultiChoice(options);
 				break;
 			default:
-				throw new Exception("Invlid choice type provided");	
+				throw new Exception("Invalid choice type provided");	
 		}
 		return c;
 	}

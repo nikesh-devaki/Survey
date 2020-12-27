@@ -3,6 +3,9 @@ package com.ndevaki.survey.model.choice;
 import java.util.ArrayList;
 
 public class MultiChoice extends Choice {
-	ArrayList<Option> options;
-	
+
+	public MultiChoice(ArrayList<Option> options) {
+		super(options);
+	}
+
 }

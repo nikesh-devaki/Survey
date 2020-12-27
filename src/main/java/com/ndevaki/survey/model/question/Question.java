@@ -3,11 +3,17 @@ package com.ndevaki.survey.model.question;
 import com.ndevaki.survey.model.choice.Choice;
 import com.ndevaki.survey.model.member.User;
 
-public abstract class Question {
+public class Question {
 	private String question;
 	private String description;
 	private Choice choice;
 	private Type type;
+	private Status status;
+	
+	public enum Status{
+		ACTIVE,
+		INACTIVE;
+	}
 	
 	public enum Type{
 		MANDITORY("Manditory"),
@@ -23,6 +29,14 @@ public abstract class Question {
 			return this.displayName;
 		}
 		
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	public String getQuestion() {
@@ -55,6 +69,15 @@ public abstract class Question {
 
 	public void setType(Type type) {
 		this.type = type;
+	}
+	
+	public boolean validate() {
+		return (this.status!=null&&this.choice!=null&&this.question!=null&&
+				this.type!=null);
+	}
+	
+	public void save() {
+		
 	}
 	
 }
