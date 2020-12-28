@@ -3,15 +3,29 @@ package com.ndevaki.survey.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.ndevaki.survey.model.member.User;
 import com.ndevaki.survey.model.question.Question;
 
+@Entity
 public class Survey {
-	private User owner;
-	private ArrayList<Question> questions;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	@Column
+	private User owner;
+	@Column
+	private ArrayList<Question> questions;
+	@Column
 	private Status status;
+	@Column
 	private String name;
+	@Column
 	private String description;
 	
 	public enum Status{
@@ -68,5 +82,10 @@ public class Survey {
 	
 	public void save() {
 		
+	}
+	
+	public static Survey findByIdAndStatus(int id2, Status active) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

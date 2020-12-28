@@ -1,6 +1,7 @@
-package com.ndevaki.survey.model.question;
+package com.ndevaki.survey.dao.question;
 
 import com.ndevaki.survey.model.choice.Choice;
+import com.ndevaki.survey.model.question.Question;
 
 public class QuestionBuilder {
 

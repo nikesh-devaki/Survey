@@ -27,3 +27,13 @@ Actions:
   -- Create Account
   
   
+  Backend:
+  -Persistance
+  -Controllers
+  -Spring security
+  
+  -mockups and JSPs
+  
+  -Unit tests-Junit or mockito
+  
+  -deploy

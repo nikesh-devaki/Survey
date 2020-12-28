@@ -1,13 +1,30 @@
 package com.ndevaki.survey.model.question;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.ndevaki.survey.model.choice.Choice;
 import com.ndevaki.survey.model.member.User;
 
+@Entity
 public class Question {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	
+	@Column
 	private String question;
+	@Column
 	private String description;
+	@Column
 	private Choice choice;
+	@Column
 	private Type type;
+	@Column
 	private Status status;
 	
 	public enum Status{
@@ -30,7 +47,7 @@ public class Question {
 		}
 		
 	}
-
+	private Question() {}
 	public Status getStatus() {
 		return status;
 	}
@@ -74,10 +91,6 @@ public class Question {
 	public boolean validate() {
 		return (this.status!=null&&this.choice!=null&&this.question!=null&&
 				this.type!=null);
-	}
-	
-	public void save() {
-		
 	}
 	
 }

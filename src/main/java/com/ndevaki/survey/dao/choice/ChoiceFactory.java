@@ -1,6 +1,11 @@
-package com.ndevaki.survey.model.choice;
+package com.ndevaki.survey.dao.choice;
 
 import java.util.ArrayList;
+
+import com.ndevaki.survey.model.choice.Choice;
+import com.ndevaki.survey.model.choice.MultiChoice;
+import com.ndevaki.survey.model.choice.Option;
+import com.ndevaki.survey.model.choice.SingleChoice;
 
 public class ChoiceFactory {
 
