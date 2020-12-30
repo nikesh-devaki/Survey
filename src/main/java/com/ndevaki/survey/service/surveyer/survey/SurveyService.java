@@ -43,7 +43,7 @@ public class SurveyService {
 	}
 	
 	public Survey getSurvey(int id) {
-		Survey survey=surveyRepository.findByIdAndStatus(id,"ACTIVE");
+		Survey survey=surveyRepository.findByIdAndStatus(id,Survey.Status.ACTIVE);
 		return survey;
 	}
 	//Create Survey
