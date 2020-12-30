@@ -1,4 +1,4 @@
-package com.ndevaki.survey.controller;
+package com.ndevaki.survey.controller.api;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -22,38 +22,38 @@ public class SurveyApiController {
 	@Autowired
 	SurveyService surveyService;
 	
-	@RequestMapping(path="/api/surveys/{surveyId}",method=RequestMethod.GET)
+	@RequestMapping(path="/api/v1/surveys/{surveyId}",method=RequestMethod.GET)
 	public Survey getSurvey(@PathVariable int surveyId) {
 		Survey survey=surveyService.getSurvey(surveyId);
 		return survey;
 	}
 	
-	@RequestMapping(path="/api/surveys",method=RequestMethod.GET)
+	@RequestMapping(path="/api/v1/surveys",method=RequestMethod.GET)
 	public Iterable<Survey> getAllSurveys() {
 		return surveyService.getAllSurveys();
 	}
 	
-	@RequestMapping(path="/api/surveys",method=RequestMethod.POST)
+	@RequestMapping(path="/api/v1/surveys",method=RequestMethod.POST)
 	public ResponseEntity createSurvey(@RequestBody Survey survey) {
 		surveyService.createSurvey(survey);
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(survey.getId()).toUri();
 		return ResponseEntity.created(location).build();		
 	}
 	
-	@RequestMapping(path="/api/surveys/{surveyId}/questions",method=RequestMethod.POST)
+	@RequestMapping(path="/api/v1/surveys/{surveyId}/questions",method=RequestMethod.POST)
 	public void addQuestion(@PathVariable int surveyId,@RequestParam String questionString,
 			@RequestParam String description,String QuestionType,String optionType,ArrayList<String> options) throws Exception {
 		Survey survey=surveyService.getSurvey(surveyId);
 		surveyService.addQuestion(survey, questionString, description, options, QuestionType, optionType);
 	}
 	
-	@RequestMapping(path="/api/surveys/{surveyId}/questions",method=RequestMethod.PUT)
+	@RequestMapping(path="/api/v1/surveys/{surveyId}/questions",method=RequestMethod.PUT)
 	public void editSurvey(@PathVariable int surveyId,@RequestParam String name,@RequestParam String description) {
 		Survey survey=surveyService.getSurvey(surveyId);
 		surveyService.editSurvey(survey, name, description);
 	}
 	
-	@RequestMapping(path="/api/surveys/{surveyId}",method=RequestMethod.DELETE)
+	@RequestMapping(path="/api/v1/surveys/{surveyId}",method=RequestMethod.DELETE)
 	public void deleteSurvey(@PathVariable int surveyId) {
 		Survey survey=surveyService.getSurvey(surveyId);
 		surveyService.deleteSurvey(survey);
