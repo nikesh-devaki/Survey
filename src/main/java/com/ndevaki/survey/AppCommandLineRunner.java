@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.ndevaki.survey.model.member.User;
-import com.ndevaki.survey.model.member.UserRepository;
+import com.ndevaki.survey.dao.member.UserRepository;
 
 @Component
 public class AppCommandLineRunner implements CommandLineRunner{

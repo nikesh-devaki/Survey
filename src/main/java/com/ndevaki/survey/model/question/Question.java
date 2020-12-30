@@ -2,10 +2,13 @@ package com.ndevaki.survey.model.question;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+import com.ndevaki.survey.model.Survey;
 import com.ndevaki.survey.model.choice.Choice;
 import com.ndevaki.survey.model.member.User;
 
@@ -20,7 +23,7 @@ public class Question {
 	private String question;
 	@Column
 	private String description;
-	@Column
+	@OneToOne(targetEntity=Choice.class, fetch = FetchType.LAZY)
 	private Choice choice;
 	@Column
 	private Type type;

@@ -5,9 +5,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import com.ndevaki.survey.model.member.User;
 import com.ndevaki.survey.model.question.Question;
@@ -17,7 +19,7 @@ public class Survey {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@Column
+	@OneToOne(targetEntity=User.class, fetch = FetchType.LAZY)
 	private User owner;
 	@Column
 	private ArrayList<Question> questions;
@@ -30,7 +32,8 @@ public class Survey {
 	
 	public enum Status{
 		ACTIVE,
-		INACTIVE;
+		IN_ACTIVE,
+		IN_PROGRESS;
 	}
 	public Survey(User user) {
 		this.owner=user;
@@ -41,8 +44,17 @@ public class Survey {
 		
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public User getOwner() {
+		return owner;
+	}
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
 	public void deactivate() {
-		this.status=Status.INACTIVE;
+		this.status=Status.IN_ACTIVE;
 	}
 	public String getDescription() {
 		return description;

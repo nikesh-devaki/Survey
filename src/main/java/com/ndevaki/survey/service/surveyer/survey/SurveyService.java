@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ndevaki.survey.dao.SurveyRepository;
 import com.ndevaki.survey.model.Survey;
@@ -36,15 +38,18 @@ public class SurveyService {
 		this.surveyRepository=repository;
 	}
 	
+	public Iterable<Survey> getAllSurveys(){
+		return surveyRepository.findAll();
+	}
+	
 	public Survey getSurvey(int id) {
 		Survey survey=surveyRepository.findByIdAndStatus(id,"ACTIVE");
 		return survey;
 	}
 	//Create Survey
-	public Survey createSurvey(ArrayList<Question> questions) {
+	public Survey createSurvey(Survey survey) {
 		User user=null; //current logged in user
-		Survey survey=new Survey(user);
-		survey.addQuestions(questions);
+		survey.setStatus(Survey.Status.IN_PROGRESS);
 		surveyRepository.save(survey);
 		return survey;
 	}
@@ -68,7 +73,7 @@ public class SurveyService {
 	
 	//Delete Survey
 	public void deleteSurvey(Survey survey) {
-		survey.setStatus(Survey.Status.INACTIVE);
+		survey.setStatus(Survey.Status.IN_ACTIVE);
 		surveyRepository.save(survey);
 	}
 	
